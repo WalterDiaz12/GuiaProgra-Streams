@@ -38,6 +38,7 @@ public class Producto {
                 '}';
     }
 
+
     public static List<Producto> cargarProductos() {
         return List.of(
                 new Producto("Laptop", 1500, "Electrónica", 5),
