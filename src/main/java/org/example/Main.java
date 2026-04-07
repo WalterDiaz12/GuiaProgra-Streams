@@ -98,6 +98,15 @@ public class Main {
         stockPorCategoria.forEach((categoria, stock) ->
                 System.out.println(categoria + ": " + stock + " unidades")
         );
+        //Ejercicio 9
+        List<Producto> listaConDescuento = lista.stream()
+                                                .filter(p -> p.getStock() >= 20)
+                                                .map(p -> new Producto(p.getNombre(),p.getPrecio() * 0.85, p.getCategoria(), p.getStock()))
+                                                .collect(Collectors.toList());
+
+        System.out.println("\nLista con precios con descuento: ");
+        listaConDescuento.forEach(p -> System.out.println(p.getNombre() + " - Stock: " + p.getStock() + " - Precio: " + p.getPrecio()));
+
 
 
 
