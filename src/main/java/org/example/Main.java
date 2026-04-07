@@ -2,6 +2,9 @@ package org.example;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -25,18 +28,15 @@ public class Main {
 
         System.out.println(promedio);
 
-        /*
-        2. Reducción de Datos
-        ○ Calcular el precio promedio de los productos de la categoría "Hogar",
-        pero solo considerando aquellos con stock disponible.
-
-
-        * Tener cuidado donde se hace el git init
-        *
-        *
-        *
-        * */
-
-
+        //EJERCICIO 3
+        Map<String, Producto> productoMasCaro = lista.stream()
+                            .collect(Collectors.groupingBy(
+                                    Producto::getCategoria,
+                                    Collectors.collectingAndThen(
+                                            Collectors.maxBy(Comparator.comparingDouble(Producto::getPrecio)),
+                                            Optional::get
+                                    ))
+                            );
+        System.out.println(productoMasCaro);
     }
 }
