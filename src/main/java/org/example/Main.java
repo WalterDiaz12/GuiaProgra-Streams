@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -65,6 +66,18 @@ public class Main {
 
         System.out.println("\nLista de productos ordenados alfabeticamente: ");
         stockProd.forEach(System.out::println);
+
+        //Ejercicio 7
+        double promedio7 =  lista.stream()
+                                .mapToDouble(Producto::getPrecio)
+                                .average()
+                                .orElse(0.0);
+        long unidades =    lista.stream()
+                                .filter(p -> p.getPrecio() > promedio7)
+                                .mapToLong(Producto::getStock)
+                                .sum();
+
+        System.out.println("\nEl stock total de los productos solo contando los que tienen precio mayor a " + promedio7 + " es: " + unidades);
 
 
 
