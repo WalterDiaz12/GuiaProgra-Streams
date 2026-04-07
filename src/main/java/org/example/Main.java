@@ -55,6 +55,16 @@ public class Main {
             e.printStackTrace();
         }
 
+        //Ejercicio 6
+        List<String> stockProd = lista.stream()
+                                        .filter(p -> p.getStock() > 0)
+                                        .filter(p -> p.getNombre().length() > 5)
+                                        .map(p -> p.getNombre())
+                                        .sorted()
+                                        .collect(Collectors.toList());
+
+        System.out.println("\nLista de productos ordenados alfabeticamente: ");
+        stockProd.forEach(System.out::println);
 
 
 
