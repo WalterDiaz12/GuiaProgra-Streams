@@ -107,8 +107,25 @@ public class Main {
         System.out.println("\nLista con precios con descuento: ");
         listaConDescuento.forEach(p -> System.out.println(p.getNombre() + " - Stock: " + p.getStock() + " - Precio: " + p.getPrecio()));
 
+        //Ejercicio 10
+        /*double gananciaElectronica = lista.stream()
+                                        .filter(p -> p.getCategoria().equals("Electrónica"))
+                                        .mapToDouble(p -> p.getPrecio() * 0.35 * p.getStock())
+                                        .sum();
+        double gananciaProductos = lista.stream()
+                                        .filter(p -> !(p.getCategoria().equals("Electrónica")))
+                                        .mapToDouble(p -> p.getPrecio() * 0.55 * p.getStock())
+                                        .sum();
+        System.out.println("\nLa ganancia total si se vendieran todos los productos seria de: " + (gananciaElectronica + gananciaProductos));*/
 
+        double gananciaTotal = lista.stream()
+                .mapToDouble(p -> {
+                    double porcentaje = p.getCategoria().equalsIgnoreCase("Electrónica") ? 0.35 : 0.55;
+                    return p.getPrecio() * porcentaje * p.getStock();
+                })
+                .sum();
 
+        System.out.println("\nLa ganancia total si se vendieran todos los productos seria de: " + gananciaTotal);
 
 
 
