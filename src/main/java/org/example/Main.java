@@ -79,6 +79,30 @@ public class Main {
 
         System.out.println("\nEl stock total de los productos solo contando los que tienen precio mayor a " + promedio7 + " es: " + unidades);
 
+        //Ejercicio 8
+        Map<String, Integer> stockPorCategoria = lista.stream()
+                .collect(Collectors.groupingBy(
+                        Producto::getCategoria,
+                        Collectors.collectingAndThen(
+                                Collectors.toList(),
+                                lista1 -> lista1.size() >= 3
+                                        ? lista1.stream()
+                                        .mapToInt(Producto::getStock)
+                                        .sum()
+                                        : null
+                        )
+                ));
+
+        stockPorCategoria.values().removeIf(v -> v == null);
+
+        stockPorCategoria.forEach((categoria, stock) ->
+                System.out.println(categoria + ": " + stock + " unidades")
+        );
+
+
+
+
+
 
 
     }
