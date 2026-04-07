@@ -1,9 +1,6 @@
 package org.example;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -46,6 +43,20 @@ public class Main {
                                     .map(p -> p.getNombre().toLowerCase())
                                     .findFirst();
         System.out.println(prod.orElse("Producto Inexistente."));
+
+        //EJERCICIO 5
+        try{
+            Optional<Producto> masBarato = lista.stream()
+                    .min(Comparator.comparingDouble(
+                            p -> p.getPrecio() * p.getStock()
+                    ));
+            System.out.println("El producto mas barato es: " + masBarato);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
 
     }
 }
