@@ -38,5 +38,14 @@ public class Main {
                                     ))
                             );
         System.out.println(productoMasCaro);
+
+        //EJERCICIO 4
+        Optional<String> prod = lista.stream()
+                                    .filter(p -> p.getCategoria().equalsIgnoreCase("deportes"))
+                                    .filter(p -> p.getStock() > 10)
+                                    .map(p -> p.getNombre().toLowerCase())
+                                    .findFirst();
+        System.out.println(prod.orElse("Producto Inexistente."));
+
     }
 }
